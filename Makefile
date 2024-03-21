@@ -16,4 +16,4 @@ clean:
 	rm *.o *.a *.so *.dll test
 
 test: test.c 
-	$(CC) $(CFLAG) $< -o $@ $(LIB) -z execstack -Wl,-rpath=./ -L. -lcroutine
+	@ $(CC) $(CFLAG) $< -o $@ $(LIB) -z execstack -Wl,-rpath=./ -L. -lcroutine
