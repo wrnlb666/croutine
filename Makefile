@@ -1,4 +1,4 @@
-CC = gcc
+CC = clang
 CFLAG = -Wall -Wextra -Wno-missing-braces -std=gnu17 -g
 LIB = -lpthread #-fsanitize=leak,bounds,address
 SRC = src/*.c
@@ -16,4 +16,4 @@ clean:
 	rm *.o *.a *.so *.dll test
 
 test: test.c 
-	@ $(CC) $(CFLAG) $< -o $@ $(LIB) -z execstack -Wl,-rpath=./ -L. -lcroutine
+	@ $(CC) $(CFLAG) $< -o $@ $(LIB) -z execstack -Wl,-rpath=./ -fblocks -lBlocksRuntime -L. -lcroutine

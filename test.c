@@ -24,6 +24,10 @@ void sleep_sort(int size, int arr[static size]) {
     
     wg_t* wg = wg_init();
     wg_add(wg, size);
+    defer({
+        wg_wait(wg);
+        printf("\n");
+    });
     defer(wg_deinit(wg));
     for (int i = 0; i < size; i++) {
         wrapper_args* args = malloc(sizeof (wrapper_args));
@@ -31,8 +35,6 @@ void sleep_sort(int size, int arr[static size]) {
         args->wg = wg;
         co(wrapper, args);
     }
-    wg_wait(wg);
-    printf("\n");
 }
 
 int main(void) {
